@@ -1,0 +1,15 @@
+#app{
+    font-family: 'Montserrat', sans-serif;
+}
+.router-link-exact-active{
+    font-weight: bold;
+}
+
+.cart-product{
+    border-radius: 20px;
+}
+
+.card-img-top{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
