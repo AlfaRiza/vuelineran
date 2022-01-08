@@ -17,10 +17,10 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/">
+                    <router-link class="nav-link" to="/keranjang">
                     Keranjang 
                     <b-icon-cart></b-icon-cart>
-                    <span class="badge badge-success ml-2">0</span>
+                    <span class="badge badge-success ml-2">{{ updateKeranjang ? updateKeranjang.length : jumlah_pesanans.length }}</span>
                     </router-link>
                 </li>
             </ul>
@@ -31,8 +31,31 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     name: 'Navbar',
+    data() {
+        return {
+            jumlah_pesanans: [],
+        }
+    },
+    props: ['updateKeranjang'],
+    methods: {
+        setJumlah(data){
+            this.jumlah_pesanans = data
+        }
+    },
+    mounted() {
+        axios.get('http://localhost:3000/keranjangs')
+        .then( (response) => {
+        // handle success
+        this.setJumlah(response.data)
+        })
+        .catch( (error) => {
+        // handle error
+        console.log("Gagal : ",error);
+        })
+    },
 }
 </script>
 
